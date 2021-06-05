@@ -1,0 +1,42 @@
+% Papers describing algorithms in libpolyhedra
+
+@MISC{Garland97surfacesimplification,
+    author = {Michael Garland and Paul S. Heckbert},
+    title = {Surface Simplification Using Quadric Error Metrics},
+    year = {1997}
+}
+
+@ARTICLE{Barber96quickhull,
+    author = {C. Bradford Barber and David P. Dobkin and Hannu Huhdanpaa},
+    title = {The Quickhull algorithm for convex hulls},
+    journal = {ACM TRANSACTIONS ON MATHEMATICAL SOFTWARE},
+    year = {1996},
+    volume = {22},
+    number = {4},
+    pages = {469--483}
+}
+
+@article{eberly08clip,
+    author = {Eberly, David},
+    title = {Clipping a Mesh Against a Plane},
+    year = {2008},
+    url = {https://www.geometrictools.com/Documentation/ClipMesh.pdf}
+}
+
+@article{Thul18acd,
+    author = {Thul, Daniel and Ladick\'{y}, L'ubor and Jeong, Sohyeon and Pollefeys, Marc},
+    title = {Approximate Convex Decomposition and Transfer for Animated Meshes},
+    year = {2018},
+    issue_date = {November 2018},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    volume = {37},
+    number = {6},
+    issn = {0730-0301},
+    url = {https://doi.org/10.1145/3272127.3275029},
+    doi = {10.1145/3272127.3275029},
+    journal = {ACM Trans. Graph.},
+    month = dec,
+    articleno = {226},
+    numpages = {10},
+}
