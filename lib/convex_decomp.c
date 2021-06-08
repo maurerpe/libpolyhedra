@@ -49,8 +49,6 @@
  * 2018
  */
 
-#define DEBUG
-
 #define PRESENT ((void *) 1)
 
 #define NUM_EDGES  16
