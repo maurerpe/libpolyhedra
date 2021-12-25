@@ -36,11 +36,14 @@ libpolyhedra_la_SOURCES = \
 	bvh_vl.c \
 	convex_decomp.c \
 	convex_hull.c \
+	cube.c \
+	cylinder.c \
 	file_obj.c \
 	file_stl.c \
 	file_svg.c \
 	ftree.c \
 	hash.c \
+	icosphere.c \
 	libpolyhedra.c \
 	plane_cut.c \
 	mass_properties.c \
@@ -52,6 +55,7 @@ libpolyhedra_la_SOURCES = \
 	triangulate2d.c \
 	unique_queue.c \
 	util.c \
+	uvsphere.c \
 	vef.c \
 	vertex_list.c
 libpolyhedra_la_LDFLAGS = -export-symbols-regex '^LP_|DllMain' -no-undefined -version-info 1:0:0

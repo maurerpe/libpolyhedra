@@ -131,6 +131,13 @@ void LP_Transform_Invert(struct lp_transform *trans);
 void LP_Transform_Point(const struct lp_transform *trans, float *dest, const float *src, int options);
 struct lp_vertex_list *LP_Transform_VertexList(const struct lp_transform *trans, const struct lp_vertex_list *src, int options);
 
+/*********************** Primatives ********************************/
+struct lp_vertex_list *LP_Cube(float x, float y, float z);
+struct lp_vertex_list *LP_Cylinder(float r, float h, int pts_per_rev);
+struct lp_vertex_list *LP_UVSphere(float radius, int segs, int rings);
+/* Num triangles = 20 * 4^num_subdiv */
+struct lp_vertex_list *LP_IcoSphere(float radius, int num_subdiv);
+  
 /*********************** Simplify **********************************/
 struct lp_vertex_list *LP_Simplify(const struct lp_vertex_list *in, size_t num_faces_out, float aggregation_thresh);
 

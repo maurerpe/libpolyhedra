@@ -33,8 +33,11 @@ AM_CPPFLAGS = -I$(top_srcdir)/include
 bin_PROGRAMS =
 
 if BUILD_PROG
-bin_PROGRAMS += polyhedra
+bin_PROGRAMS += polyhedra primative
 endif
 
 polyhedra_SOURCES = polyhedra.c
 polyhedra_LDADD = ../lib/libpolyhedra.la
+
+primative_SOURCEES = primative.c
+primative_LDADD = ../lib/libpolyhedra.la
