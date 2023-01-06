@@ -250,6 +250,9 @@ int main(int argc, char *argv[]) {
     for (count = 0, list = data; list != NULL; list = list->next, count++) {
       LP_MassProperties(list->vl, &mp);
       printf("Properties for polyhedra %zu:\n", count);
+      printf("  Vertices: %u, Indices: %zu\n",
+	     LP_VertexList_NumVert(list->vl),
+	     LP_VertexList_NumInd(list->vl));
       printf("  Volume:         %g\n", mp.volume);
       printf("  Center of mass: (%g, %g, %g)\n", mp.center_of_mass[0], mp.center_of_mass[1], mp.center_of_mass[2]);
       printf("  Inertia Tensor:\n");

@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2020-21 Paul Maurer
+  Copyright (C) 2020-2023 Paul Maurer
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are met:
@@ -125,9 +125,13 @@ void LP_Transform_Combine(struct lp_transform *dest, const struct lp_transform *
 
 void LP_Transform_Invert(struct lp_transform *trans);
 
+void LP_Transform_GetRotation(const struct lp_transform *trans, float *wxyz);
+void LP_Transform_GetTranslation(const struct lp_transform *trans, float *xyz);
+
 #define LP_TRANSFORM_NONE      0
 #define LP_TRANSFORM_NO_OFFSET 1
 #define LP_TRANSFORM_INVERT    2
+void LP_Transform_GetAsMatrix4x4(const struct lp_transform *trans, float *m, int options);
 void LP_Transform_Point(const struct lp_transform *trans, float *dest, const float *src, int options);
 struct lp_vertex_list *LP_Transform_VertexList(const struct lp_transform *trans, const struct lp_vertex_list *src, int options);
 

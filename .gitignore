@@ -122,3 +122,4 @@ Makefile
 /*.svg
 /*.stl
 src/polyhedra
+src/primative

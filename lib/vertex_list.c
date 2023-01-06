@@ -381,7 +381,7 @@ struct lp_vl_list *LP_VertexList_Read(const char *filename, float scale) {
   enum file_type ft;
 
   if ((ft = FileType(filename)) == UINT_MAX) {
-    fprintf(stderr, "Error: Unkown mesh format '%s', must be .obj or .stl\n", filename);
+    fprintf(stderr, "Error: Unkown mesh format '%s', must be .obj, .stl, or .svg\n", filename);
     goto err;
   }
   

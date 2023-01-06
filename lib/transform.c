@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2020 Paul Maurer
+  Copyright (C) 2020-2023 Paul Maurer
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are met:
@@ -197,6 +197,19 @@ void LP_Transform_Invert(struct lp_transform *trans) {
   RotPoint(trans->trans, trans->wxyz, trans->trans);
 }
 
+void LP_Transform_GetRotation(const struct lp_transform *trans, float *wxyz) {
+  wxyz[0] = trans->wxyz[0];
+  wxyz[1] = trans->wxyz[1];
+  wxyz[2] = trans->wxyz[2];
+  wxyz[3] = trans->wxyz[3];
+}
+
+void LP_Transform_GetTranslation(const struct lp_transform *trans, float *xyz) {
+  xyz[0] = trans->trans[0];
+  xyz[1] = trans->trans[1];
+  xyz[2] = trans->trans[2];
+}
+
 static void BuildMat(struct lp_transform *trans) {
   float q0, q1, q2, q3, q00, q01, q02, q03, q11, q12, q13, q22, q23, q33;
   
@@ -229,6 +242,47 @@ static void BuildMat(struct lp_transform *trans) {
   trans->mat[3*2 + 1] = 2 * (q23 + q01);
   trans->mat[3*2 + 2] = 2 * (q00 + q33) - 1;
   trans->mat_valid = 1;
+}
+
+static const float fzero[3] = {0, 0, 0};
+
+void LP_Transform_GetAsMatrix4x4(const struct lp_transform *trans, float *m, int options) {
+  int count;
+  float off[3];
+
+  if (!trans->mat_valid)
+    BuildMat((struct lp_transform *) trans);
+
+  m[12] = 0;
+  m[13] = 0;
+  m[14] = 0;
+  m[15] = 1;
+
+  if (options & LP_TRANSFORM_INVERT) {
+    if (!(options & LP_TRANSFORM_NO_OFFSET))
+      LP_Transform_Point(trans, off, fzero, LP_TRANSFORM_INVERT);
+    else
+      memset(off, 0, 3 * sizeof(float));
+
+    for (count = 0; count < 3; count++) {
+      m[4*count + 0] = trans->mat[3*0 + count];
+      m[4*count + 1] = trans->mat[3*1 + count];
+      m[4*count + 2] = trans->mat[3*2 + count];
+      m[4*count + 3] = off[count];
+    }
+  } else {
+    if (!(options & LP_TRANSFORM_NO_OFFSET))
+      memcpy(off, trans->trans, 3 * sizeof(float));
+    else
+      memset(off, 0, 3 * sizeof(float));
+
+    for (count = 0; count < 3; count++) {
+      m[4*count + 0] = trans->mat[3*count + 0];
+      m[4*count + 1] = trans->mat[3*count + 1];
+      m[4*count + 2] = trans->mat[3*count + 2];
+      m[4*count + 3] = off[count];
+    }
+  }
 }
 
 void LP_Transform_Point(const struct lp_transform *trans, float *dest, const float *src, int options) {
